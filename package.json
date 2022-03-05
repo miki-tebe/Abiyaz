@@ -19,9 +19,9 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "db": "prisma studio --experimental",
-    "db-save": "prisma migrate save --experimental",
-    "db-up": "prisma migrate up --experimental",
+    "db": "prisma studio",
+    "db-save": "prisma migrate save",
+    "db-up": "prisma migrate up",
     "generate": "prisma generate"
   },
   "dependencies": {
