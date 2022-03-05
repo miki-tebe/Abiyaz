@@ -1,4 +1,6 @@
-export async function getStaticProps({ params }) {
+import { GetStaticPaths, GetStaticProps } from 'next';
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       song: {
@@ -6,9 +8,9 @@ export async function getStaticProps({ params }) {
       }
     }
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       {
@@ -19,7 +21,7 @@ export async function getStaticPaths() {
     ],
     fallback: false
   };
-}
+};
 
 export default ({ song }) => (
   <iframe

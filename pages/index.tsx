@@ -1,4 +1,6 @@
-export async function getStaticProps() {
+import { GetStaticProps } from 'next';
+
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       songs: [
@@ -9,11 +11,11 @@ export async function getStaticProps() {
       ]
     }
   };
-}
+};
 
 export default ({ songs }) => (
   <ul>
-    {songs.map((song) => (
+    {songs?.map((song) => (
       <li key={song.id}>{song.name}</li>
     ))}
   </ul>
