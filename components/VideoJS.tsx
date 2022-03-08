@@ -33,7 +33,7 @@ export const VideoJS = (props) => {
           height="315"
           controls
           autoPlay
-          className="video-js vjs-default-skin pt-8"
+          className="video-js vjs-default-skin vjs-big-play-centered pt-8"
           data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "youtube": { "ytControls": 2 } }'
         ></video>
       </Center>
