@@ -43,7 +43,7 @@ export default ({ albums }) => {
               <Td>{album.Artist.name}</Td>
               <Td>
                 <NextLink href={`/albums/${album.id}`} passHref>
-                  <Link color="purple.500">Listen</Link>
+                  <Link color="teal.500">Listen</Link>
                 </NextLink>
               </Td>
             </Tr>
