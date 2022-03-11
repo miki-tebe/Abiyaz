@@ -11,8 +11,8 @@ import {
   Link,
   Container
 } from '@chakra-ui/react';
-import { VideoJS } from '../components/VideoJS';
 import { prisma } from '../lib/prisma';
+import Head from 'next/head';
 
 export const getStaticProps: GetStaticProps = async () => {
   const albums = await prisma.album.findMany({
@@ -27,29 +27,39 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default ({ albums }) => {
   return (
-    <Container maxW="container.md" mb={10}>
-      <Table variant="striped" colorScheme="gray" className="table-auto w-full">
-        <Thead className="">
-          <Tr className="text-left">
-            <Th>Album</Th>
-            <Th>Artist</Th>
-            <Th>Link</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {albums?.map((album) => (
-            <Tr key={album.id} className="">
-              <Td>{album.name}</Td>
-              <Td>{album.Artist.name}</Td>
-              <Td>
-                <NextLink href={`/albums/${album.id}`} passHref>
-                  <Link color="teal.500">Listen</Link>
-                </NextLink>
-              </Td>
+    <>
+      <Head>
+        <title>Home</title>
+        <meta property="og:title" content="Home" key="title" />
+      </Head>
+      <Container maxW="container.md" mb={10}>
+        <Table
+          variant="striped"
+          colorScheme="gray"
+          className="table-auto w-full"
+        >
+          <Thead className="">
+            <Tr className="text-left">
+              <Th>Album</Th>
+              <Th>Artist</Th>
+              <Th>Link</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
-    </Container>
+          </Thead>
+          <Tbody>
+            {albums?.map((album) => (
+              <Tr key={album.id} className="">
+                <Td>{album.name}</Td>
+                <Td>{album.Artist.name}</Td>
+                <Td>
+                  <NextLink href={`/albums/${album.id}`} passHref>
+                    <Link color="teal.500">Listen</Link>
+                  </NextLink>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Container>
+    </>
   );
 };

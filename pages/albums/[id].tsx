@@ -3,6 +3,7 @@ import NextLink from 'next/link';
 import { Box, Button, Heading } from '@chakra-ui/react';
 import { prisma } from '../../lib/prisma';
 import React from 'react';
+import Head from 'next/head';
 import { VideoJS } from '../../components/VideoJS';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -80,16 +81,28 @@ export default ({ album_name, arist_name, songs }) => {
   };
 
   return (
-    <Box mt={8}>
-      <Heading className="title-font font-extrabold text-4xl text-center mb-8">
-        {arist_name}
-      </Heading>
-      <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-      <NextLink href="/" passHref>
-        <Button as="a" m={8}>
-          Back
-        </Button>
-      </NextLink>
-    </Box>
+    <>
+      <Head>
+        <title>
+          {arist_name} - {album_name}
+        </title>
+        <meta
+          property="og:title"
+          content={`${arist_name} - ${album_name}`}
+          key="title"
+        />
+      </Head>
+      <Box mt={8}>
+        <Heading className="title-font font-extrabold text-4xl text-center mb-8">
+          {arist_name}
+        </Heading>
+        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+        <NextLink href="/" passHref>
+          <Button as="a" m={8}>
+            Back
+          </Button>
+        </NextLink>
+      </Box>
+    </>
   );
 };
