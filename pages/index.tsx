@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default ({ albums }) => {
   return (
-    <Container maxW="container.md">
+    <Container maxW="container.md" mb={10}>
       <Table variant="striped" colorScheme="gray" className="table-auto w-full">
         <Thead className="">
           <Tr className="text-left">

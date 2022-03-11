@@ -1,16 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
+import { Button, Flex, Spacer, useColorMode } from '@chakra-ui/react';
 
 const Header = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <header className="text-gray-600 body-font">
-      <div className="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
+      <Flex>
         <Link href="/">
-          <a className="flex title-font font-medium text-grey-900 mb-4 md:mb-0 hover:underline">
+          <a className="flex title-font font-medium text-grey-900 m-8 md:mb-0 hover:underline">
             Home
           </a>
         </Link>
-      </div>
+        <Spacer />
+        <Button onClick={toggleColorMode} className="m-4">
+          {colorMode === 'light' ? 'Dark' : 'Light'} Mode
+        </Button>
+      </Flex>
     </header>
   );
 };
