@@ -46,6 +46,15 @@ export default ({ albums }) => {
             </Tr>
           </Thead>
           <Tbody>
+            <Tr className="">
+              <Td>Random</Td>
+              <Td>Various Artists</Td>
+              <Td>
+                <NextLink href="/random" passHref>
+                  <Link color="teal.500">Listen</Link>
+                </NextLink>
+              </Td>
+            </Tr>
             {albums?.map((album) => (
               <Tr key={album.id} className="">
                 <Td>{album.name}</Td>
