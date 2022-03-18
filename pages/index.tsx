@@ -16,7 +16,8 @@ import Head from 'next/head';
 
 export const getStaticProps: GetStaticProps = async () => {
   const albums = await prisma.album.findMany({
-    include: { Artist: true }
+    include: { Artist: true },
+    orderBy: { id: 'desc' }
   });
   return {
     props: {
@@ -47,7 +48,7 @@ export default ({ albums }) => {
           </Thead>
           <Tbody>
             <Tr className="">
-              <Td>Random</Td>
+              <Td>Random Songs</Td>
               <Td>Various Artists</Td>
               <Td>
                 <NextLink href="/random" passHref>
