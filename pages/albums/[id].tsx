@@ -40,7 +40,7 @@ export default ({ album_name, arist_name, songs }) => {
   const videoJsOptions = {
     // lookup the options in the docs for more options
     autoplay: true,
-    controls: true,
+    controls: false,
     responsive: true,
     fluid: false
   };

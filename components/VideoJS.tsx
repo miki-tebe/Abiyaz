@@ -35,10 +35,9 @@ export const VideoJS = (props) => {
         ref={videoRef}
         width="480"
         height="315"
-        controls
         autoPlay
         className="video-js vjs-default-skin vjs-big-play-centered"
-        data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "youtube": { "ytControls": 2 } }'
+        data-setup='{ "youtube": { "ytControls": 2 } }'
       ></video>
       <div className="vjs-playlist self-start"></div>
     </SimpleGrid>
