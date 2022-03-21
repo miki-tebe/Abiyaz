@@ -34,7 +34,7 @@ export default ({ albums }) => {
         <meta property="og:title" content="Home" key="title" />
         <meta
           property="og:description"
-          content={`Songs of Various Artists from different albums`}
+          content="Songs of Various Artists from different albums"
           key="description"
         />
       </Head>
@@ -57,7 +57,7 @@ export default ({ albums }) => {
               <Td>Various Artists</Td>
               <Td>
                 <NextLink href="/random" passHref>
-                  <Link color="teal.500">Listen</Link>
+                  <Link>Listen</Link>
                 </NextLink>
               </Td>
             </Tr>
@@ -67,7 +67,7 @@ export default ({ albums }) => {
                 <Td>{album.Artist.name}</Td>
                 <Td>
                   <NextLink href={`/albums/${album.id}`} passHref>
-                    <Link color="teal.500">Listen</Link>
+                    <Link>Listen</Link>
                   </NextLink>
                 </Td>
               </Tr>
