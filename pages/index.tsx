@@ -32,6 +32,11 @@ export default ({ albums }) => {
       <Head>
         <title>Home</title>
         <meta property="og:title" content="Home" key="title" />
+        <meta
+          property="og:description"
+          content={`Songs of Various Artists from different albums`}
+          key="description"
+        />
       </Head>
       <Container maxW="container.md" mb={10}>
         <Table

@@ -72,6 +72,11 @@ export default ({ songs }) => {
           content={`Various Artists - Random Songs`}
           key="title"
         />
+        <meta
+          property="og:description"
+          content={`Songs of Various Artists from different albums`}
+          key="description"
+        />
       </Head>
       <Box mt={8}>
         <Heading className="title-font font-extrabold text-4xl text-center mb-8">

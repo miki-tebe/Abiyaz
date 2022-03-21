@@ -91,6 +91,11 @@ export default ({ album_name, arist_name, songs }) => {
           content={`${arist_name} - ${album_name}`}
           key="title"
         />
+        <meta
+          property="og:description"
+          content={`Songs of ${arist_name} from ${album_name} album`}
+          key="description"
+        />
       </Head>
       <Box mt={8}>
         <Heading className="title-font font-extrabold text-4xl text-center mb-8">
