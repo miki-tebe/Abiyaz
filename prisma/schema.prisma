@@ -11,6 +11,7 @@ model Song {
   id        Int    @id @default(autoincrement())
   name      String
   youtubeId String
+  duration  Int?
   Album     Album? @relation(fields: [albumId], references: [id])
   albumId   Int?
 }

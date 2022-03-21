@@ -53,6 +53,7 @@ export default ({ album_name, arist_name, songs }) => {
       list.push({
         name: song.name,
         description: `${album_name} - ${song.name}`,
+        duration: song.duration,
         sources: [
           {
             src: `https://www.youtube.com/embed/${song.youtubeId}`,

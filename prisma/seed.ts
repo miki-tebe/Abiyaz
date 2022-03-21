@@ -3,17 +3,15 @@ var usetube = require('usetube');
 import { prisma } from '../lib/prisma';
 
 // fill in the playlist id and album name before running the script
-const ArtistName = 'Aman';
-const AlbumName = 'Jimir (EP)';
-const PlaylistID = 'PL4EGtk3ytL1cbna0SeOldf8PggIFa_3_O';
+const ArtistName = 'Gutu Abera';
+const AlbumName = 'Gutu Abera Abiyaz Playlist #2';
+const PlaylistID = 'PLQolpbLsaEG8bl2aNk5-oHrm4kDQzD8fG';
 
 // run test to check if the title of the song is the same as the title of the video
 async function test() {
   let result = await usetube.getPlaylistVideos(PlaylistID);
   let formatted_result = result.map((video) => {
-    return `youtubeId: ${video.id}, name: ${
-      video.original_title.split(' - ')[1]
-    }`;
+    return `youtubeId: ${video.id}, name: ${video.original_title}, duration: ${video.duration}`;
   });
 
   console.log(formatted_result);
@@ -33,7 +31,8 @@ async function main() {
       songs: {
         create: result.map((video) => ({
           youtubeId: video.id,
-          name: video.original_title
+          name: video.original_title,
+          duration: video.duration
         }))
       }
     }

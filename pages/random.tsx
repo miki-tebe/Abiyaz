@@ -36,6 +36,7 @@ export default ({ songs }) => {
       list.push({
         name: song.name,
         description: song.name,
+        duration: song.duration,
         sources: [
           {
             src: `https://www.youtube.com/embed/${song.youtubeId}`,
