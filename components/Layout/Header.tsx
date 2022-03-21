@@ -5,10 +5,10 @@ import { Button, Flex, Spacer, useColorMode } from '@chakra-ui/react';
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <header className="text-gray-600 body-font">
+    <header className="body-font">
       <Flex>
         <Link href="/">
-          <a className="flex title-font font-medium text-grey-900 m-8 md:mb-0 hover:underline">
+          <a className="flex title-font font-medium m-8 md:mb-0 hover:underline">
             Home
           </a>
         </Link>
