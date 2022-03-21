@@ -3,9 +3,9 @@ import videojs from 'video.js';
 import 'videojs-playlist';
 import 'videojs-youtube';
 import 'videojs-playlist-ui';
-import 'video.js/dist/video-js.css';
+import 'video.js/dist/video-js.min.css';
 import 'videojs-playlist-ui/dist/videojs-playlist-ui.css';
-import { Box, Center, Grid, SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid } from '@chakra-ui/react';
 
 export const VideoJS = (props) => {
   const videoRef = React.useRef(null);

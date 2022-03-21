@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import NextLink from 'next/link';
 import { Box, Button, Heading } from '@chakra-ui/react';
 import { prisma } from '../lib/prisma';
