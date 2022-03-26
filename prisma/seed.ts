@@ -3,9 +3,9 @@ var usetube = require('usetube');
 import { prisma } from '../lib/prisma';
 
 // fill in the playlist id and album name before running the script
-const ArtistName = 'Gutu Abera';
-const AlbumName = 'Gutu Abera Abiyaz Playlist #2';
-const PlaylistID = 'PLQolpbLsaEG8bl2aNk5-oHrm4kDQzD8fG';
+const ArtistName = 'Various Artists';
+const AlbumName = 'IAAM Vol.1 | ኢያም ቁ.1';
+const PlaylistID = 'PLdUuUCoUMoogVClbRjpIzg7LDI7vU6R9';
 
 // run test to check if the title of the song is the same as the title of the video
 async function test() {
@@ -20,24 +20,28 @@ async function test() {
 
 async function main() {
   let result = await usetube.getPlaylistVideos(PlaylistID);
-  const albums = await prisma.album.create({
-    data: {
-      name: AlbumName,
-      Artist: {
-        create: {
-          name: ArtistName
+  if (result) {
+    const albums = await prisma.album.create({
+      data: {
+        name: AlbumName,
+        Artist: {
+          create: {
+            name: ArtistName
+          }
+        },
+        songs: {
+          create: result.map((video) => ({
+            youtubeId: video.id,
+            name: video.original_title,
+            duration: video.duration
+          }))
         }
-      },
-      songs: {
-        create: result.map((video) => ({
-          youtubeId: video.id,
-          name: video.original_title,
-          duration: video.duration
-        }))
       }
-    }
-  });
-  console.log({ albums });
+    });
+    console.log({ albums });
+  } else {
+    throw new Error(`Cannot get get playlist ${PlaylistID}`);
+  }
 }
 
 main()
