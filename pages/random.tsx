@@ -13,7 +13,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       songs: songs
-    }
+    },
+    revalidate: 60 // In seconds
   };
 };
 
