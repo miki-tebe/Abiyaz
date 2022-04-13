@@ -1,40 +1,60 @@
-import { GetStaticProps } from 'next';
-import React from 'react';
-import NextLink from 'next/link';
 import {
+  Container,
   Table,
   Thead,
-  Tbody,
   Tr,
   Th,
+  Tbody,
   Td,
-  Link,
-  Container
+  Link
 } from '@chakra-ui/react';
-import { prisma } from '../lib/prisma';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { prisma } from '../../lib/prisma';
 import Head from 'next/head';
+import NextLink from 'next/link';
+import React from 'react';
 
-export const getStaticProps: GetStaticProps = async () => {
-  const albums = await prisma.album.findMany({
-    include: { Artist: true },
-    orderBy: { id: 'desc' }
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const artist = await prisma.artist.findFirst({
+    include: {
+      albums: {
+        include: { songs: true }
+      }
+    },
+    where: { id: Number(params.id) }
   });
+
   return {
     props: {
-      albums
+      artist,
+      albums: artist.albums
     }
   };
 };
 
-export default ({ albums }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const artists = await prisma.artist.findMany();
+
+  return {
+    paths: artists.map((artist) => ({
+      params: {
+        id: artist.id.toString()
+      }
+    })),
+    fallback: false
+  };
+};
+
+export default ({ artist, albums }) => {
   return (
     <>
       <Head>
-        <title>Home</title>
-        <meta property="og:title" content="Home" key="title" />
+        <title>{artist.name}</title>
+        <meta property="og:title" content={artist.name} key="title" />
         <meta
           property="og:description"
-          content="Songs of Various Artists from different albums"
+          content={`Albums by ${artist.name}: 
+          ${albums.map((album) => album.name).join(', ')}`}
           key="description"
         />
       </Head>
@@ -52,23 +72,10 @@ export default ({ albums }) => {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr className="">
-              <Td>Random Songs</Td>
-              <Td>Various Artists</Td>
-              <Td>
-                <NextLink href="/random" passHref>
-                  <Link>Listen</Link>
-                </NextLink>
-              </Td>
-            </Tr>
             {albums?.map((album) => (
               <Tr key={album.id} className="">
                 <Td>{album.name}</Td>
-                <Td>
-                  <NextLink href={`/artists/${album.artistId}`} passHref>
-                    <Link>{album.Artist.name}</Link>
-                  </NextLink>
-                </Td>
+                <Td>{artist.name}</Td>
                 <Td>
                   <NextLink href={`/albums/${album.id}`} passHref>
                     <Link>Listen</Link>
